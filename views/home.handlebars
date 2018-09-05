@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Greetings</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+  <div class="container">
+    <div class="greetingHeading">
+      <h3>Greetings</h3>
+      <form action='/greetings'method='post'>
+      <div class="textboxHeading">
+        <a href="namesGreeted">View users greeted</a>
+      </div>
+      <div >
+      <input type="text" placeholder="Enter name here" class="nameEntered" name='inputText' >
+      <span placeholder="0" class="countGreetings" name='counterCount' >{{counterNum}}</span>
+    </div>
+    </div>
+    <div class="RadioBtn">
+      <span> <input type="radio" name="language" value="English" class="LanguageBtn" >English </span>
+      <span><input type="radio" name="language" value="French" class="LanguageBtn" >French</span>
+      <span><input type="radio" name="language" value="Spanish" class="LanguageBtn">Spanish</span>
+    </div>
+    <div class="buttons">
+      <button type="submit" name="Greeting" class="greetBtn">Greetings</button>
+    </div>
+    <div class="welcome">
+           <span  class="display" name='displayNameEntered'>{{displayName}}</span>
+    </div>
+    </form>
+    <form action="/reset" method="post">
+          <button type="subtmit" name="Reset" class='resetBtn'>Reset</button>
+    </form>
+  </div>
+</body>
+
+</html>
