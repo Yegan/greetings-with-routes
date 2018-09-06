@@ -17,6 +17,7 @@ if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
 
+// Handlebar engine allowing for templating of data
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
@@ -31,6 +32,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json())
 
+// get route that displays the number upon the page being loaded
+
 app.get('/', async function (req, res, next) {
     try{
         let counterNum = await funcGreeting.count();
@@ -44,7 +47,7 @@ app.get('/', async function (req, res, next) {
     
 })
 
-// Post the input from the user ie the name(Andrew) , and displaying this on the home.handlebars page
+// Post route that inputs from the user ie the name(Andrew) , and displaying this on the home.handlebars page
 
 app.post('/greetings', async function (req, res, next) {
     let nameEntered = req.body.inputText;
@@ -61,6 +64,7 @@ app.post('/greetings', async function (req, res, next) {
     
 })
 
+// this get route display the name greeted and the language selected to be greeted in
 
 app.get('/namesGreeted', async function (req, res, next) {
 
@@ -74,10 +78,25 @@ app.get('/namesGreeted', async function (req, res, next) {
     }
 })
 
+// this post route resets the counter and the names in the database by deleting the entries in the database
+
 app.post('/reset', async function(req,res, next){
     try{
         let reset = await funcGreeting.reset();
         res.redirect('/')
+    }
+    catch(error){
+        next(error.stack)
+    }
+})
+
+// this get route displays the name in the route that is greeted and displays how many times that name has been greeted
+
+app.get('/display/:name', async function(req,res, next){
+    try{
+        let myName = req.params.name;
+        let nameCounter = await funcGreeting.oneName(myName);
+        res.render('countDisplay', {name:nameCounter.name, counter:nameCounter.counter});
     }
     catch(error){
         next(error.stack)

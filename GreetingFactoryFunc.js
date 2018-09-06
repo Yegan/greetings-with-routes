@@ -40,10 +40,18 @@ module.exports = function (pool) {
 
   }
 
+  async function oneName(Myname){
+    let results = await pool.query('select * from greetings where name =$1', [Myname]);
+    return results.rows[0];
+  }
+
+  
+
   return {
     checkGreet,
     count,
     names,
-    reset
+    reset,
+    oneName,
   }
 }
