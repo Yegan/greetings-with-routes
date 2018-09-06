@@ -15,6 +15,12 @@ h3{
    color: antiquewhite;
 }
 
+h2{
+    font-size: 35px; 
+    font-family: Arial, Helvetica, sans-serif;
+    color: antiquewhite; 
+}
+
 span{
     font-size: 15px; 
     font-family: Arial, Helvetica, sans-serif;
