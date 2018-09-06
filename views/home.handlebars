@@ -14,7 +14,15 @@
     <br>
     <br>
     <div class="greetingHeading">
+
       <h3>Greetings</h3>
+      <div class="error">
+       <span class="error">{{messages.error}}</span> 
+      </div>
+      <div class="message">
+       <span class="message">{{messages.message}}</span>
+      </div>
+
       <form action='/greetings'method='post'>
       <div class="textboxHeading">
         <a href="namesGreeted">View users greeted</a>

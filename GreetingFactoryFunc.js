@@ -4,7 +4,6 @@ module.exports = function (pool) {
   // the checkGreet async function adds name into the database
   async function checkGreet(name, language) {
 
-
     if (name != '') {
       let result = await pool.query('select * from greetings where name = $1', [name]);
 
