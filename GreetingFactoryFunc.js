@@ -1,5 +1,7 @@
 module.exports = function (pool) {
 
+
+  // the checkGreet async function adds name into the database
   async function checkGreet(name, language) {
 
 
@@ -24,21 +26,29 @@ module.exports = function (pool) {
     }
 
   }
+  // the names function gets all the names from the database
+
   async function names(){
     let names = await pool.query('select name from greetings')
     return names.rows;
   }
 
+  // the count function gets the table from the database
+
   async function count() {
     let result = await pool.query('SELECT * FROM greetings');
     return result.rowCount
   }
+
+  // the reset function deletes all entries in the database
   
   async function reset(){
     let reset = await pool.query('delete from greetings');
     return reset
 
   }
+
+  // the oneName function gets the rows from the table 
 
   async function oneName(Myname){
     let results = await pool.query('select * from greetings where name =$1', [Myname]);
