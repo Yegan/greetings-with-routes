@@ -55,11 +55,8 @@ app.post('/greetings', async function (req, res, next) {
     try {
         let displayName =  await funcGreeting.checkGreet(nameEntered, languageSelected);
         let counterNum = await funcGreeting.count();
-        // console.log(counterNum)
-
     res.render('home', { displayName: displayName, counterNum: counterNum, clear: counterNum  })
     } catch (error) {
-    //    console.log('READ ERROR' +next(error.stack))
     }
     
 })
