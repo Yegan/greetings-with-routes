@@ -13,10 +13,11 @@
   <div class="container">
     <br>
     <br>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
     <div class="greetingHeading">
 
       <h3>Greetings</h3>
-      <p class="hometext">Please note only names entered in lower case will be accepted</p>
       <div class="error">
        <span class="error">{{messages.error}}</span> 
       </div>
@@ -28,30 +29,30 @@
       <div class="textboxHeading">
         <a href="namesGreeted">View users greeted</a>
       </div>
-      <div >
-      <input type="text" placeholder="Enter name here" class="nameEntered" name='inputText' >
-      <span placeholder="0" class="countGreetings" name='counterCount' >{{counterNum}}</span>
+      <div class="col-xs-4" >
+      <input type="text" placeholder="Enter name here" class="form-control" name='inputText' >
+      <p placeholder="0" class="float-right" name='counterCount' >{{counterNum}}</p>
     </div>
     </div>
     <div class="RadioBtn">
-      <span> <input type="radio" name="language" value="English" class="LanguageBtn1" >English </span> <br>
-      <span><input type="radio" name="language" value="French" class="LanguageBtn2" >French</span> <br>
-      <span><input type="radio" name="language" value="Spanish" class="LanguageBtn3">Spanish</span>
+      <span> <input type="radio" name="language" value="English" class="LanguageBtn1" style="margin:10px" >English </span> <br>
+      <span><input type="radio" name="language" value="French" class="LanguageBtn2" style="margin:10px" >French</span> <br>
+      <span><input type="radio" name="language" value="Spanish" class="LanguageBtn3" style="margin:10px">Spanish</span>
     </div>
         <br>
 
     <div class="welcome">
-           <span  class="display" name='displayNameEntered'>{{displayName}}</span>
+           <p class="display" name='displayNameEntered'>{{displayName}}</p>
     </div>
-    <div class="buttons">
+    <div class="row">
       <button type="submit" name="Greeting" class="greetBtn">Greet</button>
-      
-    </div>
-    <br>
     </form>
     <form action="/reset" method="post">
           <button type="subtmit" name="Reset" class='resetBtn'>Reset</button>
     </form>
+    </div>
+    </div>
+    </div>
   </div>
   
 </body>
