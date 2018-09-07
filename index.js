@@ -63,8 +63,9 @@ app.get('/', async function (req, res, next) {
 app.post('/greetings', async function (req, res, next) {
     try {
         let nameEntered = req.body.inputText;
+        let enteredName = nameEntered.toLowerCase();
         let languageSelected = req.body.language;
-        if (nameEntered === '' || nameEntered === undefined) {
+        if (enteredName === '' || enteredName === undefined) {
             req.flash('error', 'Please enter a name')
         } else {
             if (!languageSelected) {
@@ -72,14 +73,8 @@ app.post('/greetings', async function (req, res, next) {
                 return res.redirect('/');
             }
         }
-        // if (languageSelected === '' || languageSelected === undefined) {
-        //     req.flash('message', 'Please select a language')
-        // }
-        // else {
-        //     let displayName = await funcGreeting.checkGreet(nameEntered, languageSelected);
-        //     let counterNum = await funcGreeting.count();
-        // }
-        let displayName = await funcGreeting.checkGreet(nameEntered, languageSelected);
+        
+        let displayName = await funcGreeting.checkGreet(enteredName, languageSelected);
         let counterNum = await funcGreeting.count();
         res.render('home', { displayName: displayName, counterNum: counterNum, clear: counterNum })
     } catch (error) {

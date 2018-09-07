@@ -39,3 +39,12 @@ span{
     color: antiquewhite;  
  }
 
+ .RadioBtn{
+     padding: 5px;
+ }
+
+.hometext{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: red;
+} 
