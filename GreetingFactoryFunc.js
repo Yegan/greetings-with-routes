@@ -5,12 +5,12 @@ module.exports = function (pool) {
   async function checkGreet(name, language) {
 
     if (name != '') {
-      let result = await pool.query('select * from greetings where name = $1', [name]);
-
+      let result = await pool.query('select * from greetings where name = $1', [name.toLowerCase(name)]);
+      
       if (result.rowCount === 0) {
-        await pool.query('INSERT INTO greetings (name, counter) values ($1, $2)', [name, 0]);
+        await pool.query('INSERT INTO greetings (name, counter) values ($1, $2)', [name.toLowerCase(name), 0]);
       }
-      await pool.query('UPDATE greetings SET counter = counter + 1 WHERE name = $1', [name]);
+      await pool.query('UPDATE greetings SET counter = counter + 1 WHERE name = $1', [name.toLowerCase(name)]);
     }
 
     if (language === "English") {
@@ -53,7 +53,6 @@ module.exports = function (pool) {
     let results = await pool.query('select * from greetings where name =$1', [Myname]);
     return results.rows[0];
   }
-
   
 
   return {
@@ -62,5 +61,6 @@ module.exports = function (pool) {
     names,
     reset,
     oneName,
+    
   }
 }
