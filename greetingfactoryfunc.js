@@ -29,7 +29,7 @@ module.exports = function (pool) {
     return names.rows
   }
 
-  // the count function gets the table from the database
+  // the count function gets the count table from the database
 
   async function count () {
     let result = await pool.query('SELECT * FROM greetings')
