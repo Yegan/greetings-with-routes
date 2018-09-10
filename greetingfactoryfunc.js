@@ -1,13 +1,13 @@
 module.exports = function (pool) {
   // the checkGreet async function adds name into the database
-  async function checkGreet (name, language) { 
-
+  async function checkGreet (name, language) {
     if (name != '') {
-      let result = await pool.query('select * from greetings where LOWER(name) = $1', [name.toLowerCase(name)])
-      if (result.rowCount === 0) {
-        await pool.query('INSERT INTO greetings (name, counter) values ($1, $2)', [name, 0])
+      let result = await pool.query('select * from greetings where LOWER(name) = $1', [name.toLowerCase()])
+      if (result.rows.length === 0) {
+        await pool.query('INSERT INTO greetings (name, counter) values ($1, $2)', [name.toLowerCase(), 1])
+      } else {
+        await pool.query('UPDATE greetings SET counter = counter + 1  WHERE name = LOWER($1)', [name.toLowerCase()])
       }
-      await pool.query('UPDATE greetings SET counter = counter + 1 WHERE name = LOWER($1)', [name.toLowerCase(name)])
     }
 
     if (language === 'English') {
@@ -18,9 +18,7 @@ module.exports = function (pool) {
     }
     if (language === 'French') {
       return 'Bonjour ' + name
-
     }
-
   }
   // the names function gets all the names from the database
 
@@ -32,7 +30,8 @@ module.exports = function (pool) {
   // the count function gets the count table from the database
 
   async function count () {
-    let result = await pool.query('SELECT * FROM greetings')
+    let result = await pool.query('select * FROM greetings')
+    console.log(result.rowCount)
     return result.rowCount
   }
 
